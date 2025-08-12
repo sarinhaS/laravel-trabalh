@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('nome');
             $table->string('sinopse');
             $table->integer('ano');
-            $table->integer('categoria_id');
             $table->text('imagem');
             $table->string('trailer');
             $table->timestamps();
 
-            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
+            $table->foreignId('categorias_id')->constrained()->onDelete('cascade');
         });
     }
 

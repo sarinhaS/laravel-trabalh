@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FilmesRequest;
+use App\Http\Requests\CategoriaRequest;
 use App\Models\Categoria;
-use App\Models\Filme;
 use Illuminate\Http\Request;
 
-class FilmeController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $filmes = Filme::all();
-        return view('filmes', [
-            'filmes' => $filmes,
+        $categorias = Categoria::all();
+        return view('categorias.index', [
+            "categorias" => $categorias,
         ]);
     }
 
@@ -25,24 +24,17 @@ class FilmeController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        return view('create', compact('categorias'));
+        return view('categorias.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FilmesRequest $request)
+    public function store(CategoriaRequest $request)
     {
         $dados = $request->validated();
-        if ($request->hasFile('imagem')) {
-            $imagem = $request->file('imagem');
-            $caminhoImagem = $imagem->store('filmes', 'public');
-            $dados['imagem'] = $caminhoImagem;
-        }
-
-        Filme::create($dados);
-        return redirect()->route('filmes');
+        Categoria::create($dados);
+        return redirect()->route('categorias.index');
     }
 
     /**
