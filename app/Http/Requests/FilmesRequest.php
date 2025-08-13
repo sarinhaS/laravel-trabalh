@@ -21,14 +21,18 @@ class FilmesRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'nome' => 'required',
-            'sinopse' => 'required',
-            'ano' => 'required',
-            'categoria_id' => 'required',
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'trailer' => 'required',
+        if (!$this->isMethod('GET')){
+            return [
+                'nome' => 'required',
+                'sinopse' => 'required',
+                'ano' => 'required',
+                'categorias_id' => 'required',
+                'imagem' => 'required|image|mimes:jpeg,png,jpg,gif',
+                'trailer' => 'required',
 
-        ];
+            ];
+        }
+
+        return [];
     }
 }

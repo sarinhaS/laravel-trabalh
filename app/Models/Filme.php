@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Filme extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'sinopse', 'ano', 'categoria_id', 'imagem', 'trailer'];
+    protected $fillable = ['nome', 'sinopse', 'ano', 'categorias_id', 'imagem', 'trailer'];
 
     public function categoria() : BelongsTo{
         return $this->belongsTo(Categoria::class);

@@ -15,7 +15,9 @@ class FilmeController extends Controller
     public function index()
     {
         $filmes = Filme::all();
+        $categorias = Categoria::all();
         return view('filmes', [
+            'categorias' => $categorias,
             'filmes' => $filmes,
         ]);
     }
@@ -48,17 +50,36 @@ class FilmeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id )
     {
-        //
+        $filme = Filme::find($id);
+        $categoria = Categoria::all();
+
+        return view('show', [
+            'filme' => $filme,
+            'categorias' => $categoria,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Filme $filme, FilmesRequest $request)
     {
-        //
+        if($request->isMethod('put')) {
+            $filme = Filme::find($request->id);
+            $filme->fill($request->all());
+            $filme->save();
+
+            return redirect()->route('filmes');
+        }
+
+        $categorias = Categoria::all();
+
+        return view('editar', [
+            'filme' => $filme,
+            'categorias' => $categorias
+        ]);
     }
 
     /**

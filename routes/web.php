@@ -12,6 +12,9 @@ Route::get('/', function () {
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
 Route::get('/filmes/create', [FilmeController::class, 'create'])->name('filmes.create');
 Route::post('/filmes', [FilmeController::class, 'store'])->name('filmes.store');
+Route::get('/filmes/edit/{filme}', [FilmeController::class, 'edit'])->name('filmes.edit');
+Route::put('/filmes/edit', [FilmeController::class, 'edit'])->name('filmes.editGravar');
+Route::get('/filmes/{id}', [FilmeController::class, 'show'])->name('filmes.show');
 
 
 
