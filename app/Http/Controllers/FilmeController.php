@@ -54,6 +54,7 @@ class FilmeController extends Controller
     {
         $filme = Filme::find($id);
         $categoria = Categoria::all();
+        $filme->load('comentarios');
 
         return view('show', [
             'filme' => $filme,
@@ -85,16 +86,31 @@ class FilmeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function filtrar(FilmesRequest $request)
     {
-        //
+        $filme = Filme::query();
+
+        // Filtro por ano
+        if ($request->filled('ano')) {
+            $filme->where('ano', $request->ano);
+        }
+
+        // Filtro por categoria
+        if ($request->filled('categoria_id')) {
+            $filme->where('categorias_id', $request->categoria_id);
+        }
+
+        $filmes = $filme->get();
+
+        return view('filmes', compact('filmes'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Filme $filme)
     {
-        //
+        $filme->delete();
+        return redirect()->route('filmes');
     }
 }

@@ -34,6 +34,27 @@
                                 <br>
                                 <a href={{ route('filmes.edit', $filme->id) }}> Editar </a>
                                 <a href="{{ route('filmes') }}">Voltar</a>
+
+                                <h3>Comentários</h3>
+                                <ul>
+                                    @forelse($filme->comentarios as $comentario)
+                                        <li>
+                                            <strong>{{ $comentario->autor }}:</strong> {{ $comentario->conteudo }}
+                                        </li>
+                                    @empty
+                                        <li>Sem comentários ainda.</li>
+                                    @endforelse
+                                </ul>
+
+                                <hr>
+
+                                <h3>Deixe seu comentário</h3>
+                                <form action="{{ route('comentarios.store', $filme->id) }}" method="POST">
+                                    @csrf
+                                    <input type="text" name="autor" placeholder="Seu nome">
+                                    <textarea name="conteudo" placeholder="Seu comentário"></textarea>
+                                    <button type="submit">Enviar</button>
+                                </form>
                             </div>
                         </a>
                 </div>

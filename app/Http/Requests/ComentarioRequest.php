@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FilmesRequest extends FormRequest
+class ComentarioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,18 +21,9 @@ class FilmesRequest extends FormRequest
      */
     public function rules(): array
     {
-        if (!$this->isMethod('GET')){
-            return [
-                'nome' => 'required',
-                'sinopse' => 'required',
-                'ano' => 'required',
-                'categorias_id' => 'required',
-                'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
-                'trailer' => 'required',
-
-            ];
-        }
-
-        return [];
+        return [
+            'autor' => "required|string|max:255",
+            'conteudo' => "required|string",
+        ];
     }
 }
