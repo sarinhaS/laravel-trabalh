@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Filme extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'sinopse', 'ano', 'categorias_id', 'imagem', 'trailer'];
+    protected $fillable = ['nome', 'sinopse', 'ano', 'categorias_id', 'imagem', 'trailer', 'comentarios'];
 
     public function categoria() : BelongsTo{
         return $this->belongsTo(Categoria::class);

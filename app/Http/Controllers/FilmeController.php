@@ -20,6 +20,7 @@ class FilmeController extends Controller
             'categorias' => $categorias,
             'filmes' => $filmes,
         ]);
+        
     }
 
     /**
@@ -88,21 +89,6 @@ class FilmeController extends Controller
      */
     public function filtrar(FilmesRequest $request)
     {
-        $filme = Filme::query();
-
-        // Filtro por ano
-        if ($request->filled('ano')) {
-            $filme->where('ano', $request->ano);
-        }
-
-        // Filtro por categoria
-        if ($request->filled('categoria_id')) {
-            $filme->where('categorias_id', $request->categoria_id);
-        }
-
-        $filmes = $filme->get();
-
-        return view('filmes', compact('filmes'));
     }
 
     /**

@@ -39,10 +39,10 @@
                                 <ul>
                                     @forelse($filme->comentarios as $comentario)
                                         <li>
-                                            <strong>{{ $comentario->autor }}:</strong> {{ $comentario->conteudo }}
+                                            {{  $comentario->conteudo }}
                                         </li>
                                     @empty
-                                        <li>Sem comentários ainda.</li>
+                                            {{  dd($filme)}}
                                     @endforelse
                                 </ul>
 

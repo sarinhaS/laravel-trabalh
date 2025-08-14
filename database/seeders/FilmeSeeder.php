@@ -45,7 +45,7 @@ class FilmeSeeder extends Seeder
             'sinopse' => 'Chihiro, uma menina de 10 anos, se vê presa em um mundo mágico cheio de espíritos e deuses. Para salvar seus pais transformados em porcos, ela precisa enfrentar desafios e crescer em coragem e sabedoria.',
             'ano' => '2001',
             'categorias_id' => 5,
-            'imagem' => '/filmes/chihiro.jpg',
+            'imagem' => 'filmes/chihiro.jpg',
             'trailer' => 'https://www.youtube.com/watch?v=ByXuk9QqQkk',
         ]);
     }
