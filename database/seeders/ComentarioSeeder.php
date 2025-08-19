@@ -15,14 +15,16 @@ class ComentarioSeeder extends Seeder
      */
     public function run(): void
     {
-        $filmes = Filme::all();
+
+       $filmes = Filme::all();
 
         foreach ($filmes as $filme) {
             Comentario::factory()
-                ->count(10) 
+                ->count(10)
                 ->create([
-                    'filme_id' => $filme->id, 
+                    'filme_id' => $filme->id,
                 ]);
         }
+
     }
 }

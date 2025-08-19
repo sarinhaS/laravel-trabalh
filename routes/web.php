@@ -15,8 +15,8 @@ Route::delete('/filmes/{filme}/delete', [FilmeController::class, 'destroy'])->na
 Route::get('/filmes/filtrar', [FilmeController::class, 'filtrar'])->name('filmes.filtrar');
 Route::get('/filmes/create', [FilmeController::class, 'create'])->name('filmes.create');
 Route::post('/filmes', [FilmeController::class, 'store'])->name('filmes.store');
-Route::get('/filmes/edit/{filme}', [FilmeController::class, 'edit'])->name('filmes.edit');
-Route::put('/filmes/edit', [FilmeController::class, 'edit'])->name('filmes.editGravar');
+Route::get('/filmes/{filme}/edit', [FilmeController::class, 'edit'])->name('filmes.edit');
+Route::put('/filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update');
 Route::get('/filmes/{id}', [FilmeController::class, 'show'])->name('filmes.show');
 
 

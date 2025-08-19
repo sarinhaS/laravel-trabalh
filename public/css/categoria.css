@@ -1,0 +1,80 @@
+/* Container principal */
+.categorias-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.categorias-container h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+/* Lista de categorias */
+.categoria-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.categoria-card:hover {
+    background-color: #e2e6ea;
+}
+
+/* Nome da categoria */
+.categoria-card b {
+    font-size: 18px;
+}
+
+/* Ações do admin */
+.categoria-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.categoria-actions a, 
+.categoria-actions button {
+    background-color: #3498db;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.categoria-actions a:hover,
+.categoria-actions button:hover {
+    background-color: #1d6fa5;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .categoria-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .categoria-actions {
+        margin-top: 8px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .categoria-actions a,
+    .categoria-actions button {
+        padding: 6px 10px;
+    }
+}

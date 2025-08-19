@@ -65,16 +65,8 @@ class FilmeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Filme $filme, FilmesRequest $request)
+    public function edit(Filme $filme)
     {
-        if($request->isMethod('put')) {
-            $filme = Filme::find($request->id);
-            $filme->fill($request->all());
-            $filme->save();
-
-            return redirect()->route('filmes');
-        }
-
         $categorias = Categoria::all();
 
         return view('editar', [
@@ -83,26 +75,44 @@ class FilmeController extends Controller
         ]);
     }
 
+    public function update(FilmesRequest $request, Filme $filme)
+    {
+        $filme->fill($request->validated());
+    
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $caminhoImagem = $imagem->store('filmes', 'public');
+            $filme['imagem'] = $caminhoImagem;
+        }
+
+        $filme->save();
+
+        return redirect()->route('filmes');
+    }
+
     /**
      * Update the specified resource in storage.
      */
     public function filtrar(FilmesRequest $request)
     {
-        $filme = Filme::query();
+        $filmes = Filme::query();
 
         // Filtro por ano
         if ($request->filled('ano')) {
-            $filme->where('ano', $request->ano);
+            $filmes->where('ano', $request->ano);
         }
 
         // Filtro por categoria
         if ($request->filled('categoria_id')) {
-            $filme->where('categorias_id', $request->categoria_id);
+            $filmes->where('categorias_id', $request->categoria_id);
         }
 
-        $filmes = $filme->get();
+        $filmes = $filmes->get();
 
-        return view('filmes', compact('filmes'));
+        return view('filmes', [
+            'filmes' => $filmes,
+            'categorias' => Categoria::all(), // mantém as categorias no select
+        ]);
     }
 
     /**
