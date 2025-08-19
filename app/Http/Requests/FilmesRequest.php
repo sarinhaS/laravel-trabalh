@@ -29,7 +29,7 @@ class FilmesRequest extends FormRequest
                 'categorias_id' => 'required',
                 'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
                 'trailer' => 'required',
-
+                'comentarios' => '',
             ];
         }
 

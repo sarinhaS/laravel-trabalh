@@ -20,6 +20,7 @@ class FilmeController extends Controller
             'categorias' => $categorias,
             'filmes' => $filmes,
         ]);
+        
     }
 
     /**
